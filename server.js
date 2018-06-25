@@ -45,10 +45,34 @@ app.get('/signup',function(req,res){
 });
 //Au moment de l'envoi d'un formulaire d'inscription
 app.post('/signup',function(req,res){
-
-	res.render('index');
+	var insc='INSERT INTO Utilisateur (Pseudo,Nom,Prenom,Pass,Mail,Adresse,CP,Ville) VALUES("'+req.body.Pseudo +
+	'","'+req.body.Nom +
+	'","'+req.body.Prenom+
+	'","'+req.body.Pass+
+	'","'+req.body.Mail+
+	'","'+req.body.Adresse+
+	'","'+req.body.CP+
+	'","\'+req.body.Ville+")';
+	db.serialize(()=>{
+		db.all(insc,(err,row)=>{
+			if(err){
+				console.log('Pseudo deja pris');
+				res.render('signup')
+			}else{
+				console.log('inscription success')
+				res.render('index')
+			};
+		})
+	})
 });
-
+//formulaire de connexion
+app.post('/signin',function(){
+	
+})
+//fonction de retour vers la page signup
+function getback(){
+	app.get('/signup');
+}
 //Ouverture du serveur sur le port choisi
 app.listen(2598,function(){
 	console.log('Server On')
