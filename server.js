@@ -17,4 +17,6 @@ app.get('/',function(req,res){
 });
 
 //Ouverture du serveur sur le port choisi
-app.listen(2598);
+app.listen(2598,function(){
+	console.log('Server On')
+});
