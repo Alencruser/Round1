@@ -32,6 +32,9 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
+					<a class="nav-link" href="#">Aventure</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="#">Amour</a>
 				</li>
 				<li class="nav-item">
@@ -64,23 +67,32 @@
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 			<a class="navbar-brand"></a>
-				<a href="signin"><button class="btn btn-info">Sign in</button></a>
-				<a href="signup"><button class="btn btn-info">Sign up</button></a>
+			<a href="signin"><button class="btn btn-info">Sign in</button></a>
+			<a href="signup"><button class="btn btn-info">Sign up</button></a>
 		</nav>
 		<div class="container">
-			<% if (this.llivres) {%>
-			<% for (var item of this.llivres){%>
-            <form action="/" method="POST">
-              <a name='display' style="text-decoration: none; color: black;" href="/read/<%=item.id_Post%>" method="POST">
-                <div class="card">
-                <div class="card-header" name="titrepost"><%item.nom%></div>
-                <div class="card-body"><blockquote class="blockquote mb-0">
-                <p><%item.Auteur%><%item.Genre%></p>
-                </blockquote></div>
-                <div class="card-footer text-right"><%=item.Annee%></div>
-                </div>            
-                <button name='del' class="btn btn-success my-2 my-sm-0" type="submit" value=<%=item.id_Post%>>Supprimer Post</button>
-              </a><%}}%>
+			<% if (llivres) {%>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Titre</th>
+						<th scope="col">Auteur</th>
+						<th scope="col">Année</th>
+						<th scope="col">Genre</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% llivres.forEach(function(item){%>
+					<tr>
+						<th scope="row"><%=item.Nom%></th>
+						<td><%=item.Auteur%></td>
+						<td><%=item.Annee%></td>
+						<td><%=item.Genre%></td>
+					</tr>
+					<%})%>
+				</tbody>
+			</table>
+			<%}%>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

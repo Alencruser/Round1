@@ -27,7 +27,6 @@ app.get('/',function(req,res){
 				console.log(err.message)
 			};
 			if(row.length>0){
-				console.log(row.length+' livres ')
 				res.render('index',{llivres: row})
 			}else {
 				console.log('Pas de livres')
