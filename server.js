@@ -15,6 +15,14 @@ app.set('view engine','ejs');
 app.get('/',function(req,res){
 	res.render('index');
 });
+//Page de connexion du site
+app.get('/signin',function(req,res){
+	res.render('signin');
+});
+//Page d'inscription du site
+app.get('/signup',function(req,res){
+	res.render('signup');
+});
 
 //Ouverture du serveur sur le port choisi
 app.listen(2598,function(){

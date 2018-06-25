@@ -1,3 +1,11 @@
 #carouselmed img {
 	height:300px;
 }
+ul {
+	list-style-type: none;
+}
+#boxform {
+	margin-top :20px;
+	padding-bottom:20px;
+	color:white;
+}
