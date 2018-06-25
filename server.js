@@ -191,6 +191,10 @@ app.get('/theatre',function(req,res){
 		})
 	})
 });
+//retour à l'index lors de l'appui sur type
+app.get('/index',function(req,res){
+	res.redirect('/');
+});
 //Ouverture du serveur sur le port choisi
 app.listen(2598,function(){
 	console.log('Server On')
