@@ -52,7 +52,7 @@ app.post('/signup',function(req,res){
 	'","'+req.body.Mail+
 	'","'+req.body.Adresse+
 	'","'+req.body.CP+
-	'","\'+req.body.Ville+")';
+	'","\'+req.body.Ville+");';
 	db.serialize(()=>{
 		db.all(insc,(err,row)=>{
 			if(err){
@@ -66,8 +66,20 @@ app.post('/signup',function(req,res){
 	})
 });
 //formulaire de connexion
-app.post('/signin',function(){
-	
+app.post('/signin',function(req,res){
+	var check="SELECT Pass FROM Utilisateur WHERE Pseudo='"+req.body.pseudo+"'";
+	db.serialize(()=>{
+		db.all(check,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			if(row[0].Pass==req.body.password){
+				res.render('index')
+			}else{
+				console.log('Mauvais mot de passe ou compte inexistant')
+			}
+		})
+	})
 })
 //fonction de retour vers la page signup
 function getback(){
