@@ -57,10 +57,9 @@ app.post('/signup',function(req,res){
 		db.all(insc,(err,row)=>{
 			if(err){
 				console.log('Pseudo deja pris');
-				res.render('signup')
 			}else{
 				console.log('inscription success')
-				res.render('index')
+				res.redirect('/')
 			};
 		})
 	})
@@ -74,17 +73,124 @@ app.post('/signin',function(req,res){
 				console.log(err.message)
 			}
 			if(row[0].Pass==req.body.password){
-				res.render('index')
+				res.redirect('/')
 			}else{
 				console.log('Mauvais mot de passe ou compte inexistant')
 			}
 		})
 	})
 })
-//fonction de retour vers la page signup
-function getback(){
-	app.get('/signup');
-}
+//Quand l'utilisateur clique sur un type, affiche seulement les oeuvres avec ce type
+app.get('/aventure',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Aventure' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/amour',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Amour' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/policier',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Policier' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/historique',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Historique' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/science',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Science-Fiction' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/fantaisie',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Fantaisie' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/horreur',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Horreur' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/bd',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='BD' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/contes',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Contes' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
+app.get('/theatre',function(req,res){
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Theatre' ORDER BY Annee DESC"
+	db.serialize(()=>{
+		db.all(av,(err,row)=>{
+			if(err){
+				console.log(err.message)
+			}
+			res.render('index',{llivres:row})
+		})
+	})
+});
 //Ouverture du serveur sur le port choisi
 app.listen(2598,function(){
 	console.log('Server On')
