@@ -170,7 +170,7 @@ app.get('/bd',function(req,res){
 	})
 });
 app.get('/contes',function(req,res){
-	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Contes' ORDER BY Annee DESC"
+	var av="SELECT Nom,auteur,Annee,Genre FROM Livre WHERE Genre='Conte' ORDER BY Annee DESC"
 	db.serialize(()=>{
 		db.all(av,(err,row)=>{
 			if(err){
