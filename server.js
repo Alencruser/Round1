@@ -23,6 +23,10 @@ app.get('/signin',function(req,res){
 app.get('/signup',function(req,res){
 	res.render('signup');
 });
+//Au moment de l'envoi d'un formulaire d'inscription
+app.post('/signup',function(req,res){
+	res.render('index');
+});
 
 //Ouverture du serveur sur le port choisi
 app.listen(2598,function(){
