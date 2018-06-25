@@ -75,7 +75,7 @@ app.post('/signin',function(req,res){
 			if(row[0].Pass==req.body.password){
 				res.redirect('/')
 			}else{
-				console.log('Mauvais mot de passe ou compte inexistant')
+				console.log('Mauvais mot de passe ou compte inexistant');
 			}
 		})
 	})
